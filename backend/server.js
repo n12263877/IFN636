@@ -1,41 +1,26 @@
-import cors from "cors";
-import dotenv from "dotenv";
-import express from "express";
-import mongoose from "mongoose";
 
-// Load environment variables
+const express = require('express');
+const dotenv = require('dotenv');
+const cors = require('cors');
+const connectDB = require('./config/db');
+
 dotenv.config();
+
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
+app.use('/api/auth', require('./routes/authRoutes'));
+//app.use('/api/tasks', require('./routes/taskRoutes'));
 
-// Port from .env
-const PORT = process.env.PORT || 5000;
-
-// MongoDB Connection
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGO_URI);
-
-    console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.error("❌ MongoDB Connection Failed:", error.message);
-    process.exit(1);
+// Export the app object for testing
+if (require.main === module) {
+    connectDB();
+    // If the file is run directly, start the server
+    const PORT = process.env.PORT || 5001;
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   }
-};
 
-// Routes
-app.get("/", (req, res) => {
-  res.send("API is running...");
-});
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-});
-
-// Connect to DB
-connectDB();
+module.exports = app
