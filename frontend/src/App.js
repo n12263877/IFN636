@@ -3,87 +3,106 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import AdminRoute from "./components/AdminRoute";
 import Navbar from "./components/Navbar";
 
-// USER PAGES
+// 🔥 USER PAGES
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import MyOrders from "./pages/MyOrders";
 import ProductDetail from "./pages/ProductDetail";
 import Products from "./pages/Products";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 
-// ADMIN PAGES
+// 🔥 ADMIN PAGES
 import AddProduct from "./pages/AddProduct";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminOrders from "./pages/AdminOrders";
 import AdminProducts from "./pages/AdminProducts";
 import EditProduct from "./pages/EditProduct";
 
+// 🔥 OPTIONAL: SIMPLE 404 PAGE
+const NotFound = () => (
+  <div className="p-10 text-center">
+    <h1 className="text-2xl font-bold">404 - Page Not Found</h1>
+  </div>
+);
+
 function App() {
   return (
     <Router>
+      {/* 🔥 NAVBAR */}
       <Navbar />
 
-      <Routes>
-        {/* ================= USER ROUTES ================= */}
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
+      {/* 🔥 MAIN CONTENT WRAPPER */}
+      <div className="min-h-screen bg-gray-50">
+        <Routes>
+          {/* ================= USER ROUTES ================= */}
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
 
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile />} />
+          <Route path="/my-orders" element={<MyOrders />} />
 
-        {/* ================= ADMIN ROUTES ================= */}
-        <Route
-          path="/admin"
-          element={
-            <AdminRoute>
-              <AdminDashboard />
-            </AdminRoute>
-          }
-        />
+          <Route path="/profile" element={<Profile />} />
 
-        <Route
-          path="/admin/products"
-          element={
-            <AdminRoute>
-              <AdminProducts />
-            </AdminRoute>
-          }
-        />
+          {/* AUTH */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-        <Route
-          path="/add-product"
-          element={
-            <AdminRoute>
-              <AddProduct />
-            </AdminRoute>
-          }
-        />
+          {/* ================= ADMIN ROUTES ================= */}
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <AdminDashboard />
+              </AdminRoute>
+            }
+          />
 
-        <Route
-          path="/edit-product/:id"
-          element={
-            <AdminRoute>
-              <EditProduct />
-            </AdminRoute>
-          }
-        />
+          <Route
+            path="/admin/products"
+            element={
+              <AdminRoute>
+                <AdminProducts />
+              </AdminRoute>
+            }
+          />
 
-        <Route
-          path="/admin-orders"
-          element={
-            <AdminRoute>
-              <AdminOrders />
-            </AdminRoute>
-          }
-        />
-      </Routes>
+          <Route
+            path="/add-product"
+            element={
+              <AdminRoute>
+                <AddProduct />
+              </AdminRoute>
+            }
+          />
+
+          <Route
+            path="/edit-product/:id"
+            element={
+              <AdminRoute>
+                <EditProduct />
+              </AdminRoute>
+            }
+          />
+
+          <Route
+            path="/admin-orders"
+            element={
+              <AdminRoute>
+                <AdminOrders />
+              </AdminRoute>
+            }
+          />
+
+          {/* 🔥 FALLBACK */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
     </Router>
   );
 }

@@ -7,9 +7,13 @@ const { adminOnly } = require("../middleware/adminMiddleware");
 
 // CREATE
 router.post("/", protect, adminOnly, async (req, res) => {
-  const product = new Product(req.body);
-  const saved = await product.save();
-  res.json(saved);
+  try {
+    const product = new Product(req.body);
+    const saved = await product.save();
+    res.json(saved);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
 
 // GET ALL
