@@ -1,28 +1,56 @@
-name: CI
+name: MERN CI/CD Pipeline
 
 on:
-    push:
-        branches:
-            - main
-    pull_request:
-        branches:
-            - main
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-        steps:
-        - name: Checkout code
-            uses: actions/checkout@v2
+    steps:
+      # 1. Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-        - name: Set up Node.js
-            uses: actions/setup-node@v2
-            with:
-                node-version: '14'
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-        - name: Install dependencies
-            run: npm install
+      # 3. Install backend dependencies
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          npm install
 
-        - name: Run tests
-            run: npm test
+      # 4. Install frontend dependencies
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
+      # 5. Build frontend
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm run build
+
+                # 6. Deploy to EC2
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd /home/ubuntu/LAPTOP_STORE_MANAGEMENT
+            git pull origin main
+            cd backend && npm install
+            cd ../frontend && npm install && npm run build
+            pm2 restart all
