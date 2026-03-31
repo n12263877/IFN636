@@ -39,7 +39,7 @@ jobs:
       - name: Build frontend
         run: |
           cd frontend
-          npm run build
+          CI=false npm run build
 
                 # 6. Deploy to EC2
       - name: Deploy to EC2

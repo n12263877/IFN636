@@ -19,18 +19,18 @@ const EditProduct = () => {
     image: "",
   });
 
-  const fetchProduct = useCallback(async () => {
-    try {
-      const res = await axios.get(`/products/${id}`);
-      setFormData(res.data);
-    } catch (err) {
-      alert("Error loading product");
-    }
-  }, [id]); // ✓ fetchProduct depends on id
-
   useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const res = await axios.get(`/products/${id}`);
+        setFormData(res.data);
+      } catch (err) {
+        alert("Error loading product");
+      }
+    };
+
     fetchProduct();
-  }, [fetchProduct]);
+  }, [id]);
 
   const handleChange = (e) => {
     setFormData({

@@ -50,14 +50,17 @@ const Home = () => {
           <img
             src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853"
             className="rounded h-48 w-full object-cover"
+            alt="image2"
           />
           <img
             src="https://images.unsplash.com/photo-1518770660439-4636190af475"
             className="rounded h-48 w-full object-cover"
+            alt="image1"
           />
           <img
             src="https://images.unsplash.com/photo-1587829741301-dc798b83add3"
             className="rounded h-48 w-full object-cover"
+            alt="image2"
           />
         </div>
       </div>
@@ -107,18 +110,22 @@ const Home = () => {
             {
               name: "Gaming",
               img: "https://images.unsplash.com/photo-1603302576837-37561b2e2302",
+              alt: "product image",
             },
             {
               name: "Business",
               img: "https://images.unsplash.com/photo-1492724441997-5dc865305da7",
+              alt: "product image",
             },
             {
               name: "Student",
               img: "https://images.unsplash.com/photo-1527430253228-e93688616381",
+              alt: "product image",
             },
             {
               name: "Ultrabook",
               img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+              alt: "product image",
             },
           ].map((cat) => (
             <div
@@ -129,6 +136,7 @@ const Home = () => {
               <img
                 src={cat.img}
                 className="h-24 w-full object-cover rounded mb-2"
+                alt="product image"
               />
               <h3 className="font-semibold">{cat.name} Laptops</h3>
             </div>

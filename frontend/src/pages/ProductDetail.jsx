@@ -83,7 +83,11 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        <img src={product.image} className="w-full h-80 object-cover rounded" />
+        <img
+          src={product.image}
+          className="w-full h-80 object-cover rounded"
+          alt="product image"
+        />
       </div>
 
       {/* 🔥 DETAILS */}

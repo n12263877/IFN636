@@ -82,6 +82,7 @@ const MyOrders = () => {
                       <img
                         src={item.image}
                         className="h-12 w-12 object-cover rounded"
+                        alt="product image"
                       />
                       <div>
                         <p>{item.name}</p>

@@ -79,7 +79,7 @@ const AdminProducts = () => {
                   <img
                     src={p.image}
                     className="h-14 w-14 object-cover rounded"
-                    alt=""
+                    alt="product image"
                   />
                 </td>
 
