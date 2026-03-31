@@ -89,16 +89,15 @@ npm start
 Frontend URL:
 
 ```
-http://localhost:3000
+http://100.27.233.254/
 ```
 
 Backend URL:
 
 ```
-http://localhost:5001/api
+http://100.27.233.254:5001/api/products
 ```
 
-(Replace with deployed AWS URL if available)
 
 ---
 
