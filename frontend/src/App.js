@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 // 🔥 USER PAGES
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
+import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import MyOrders from "./pages/MyOrders";
@@ -13,7 +14,6 @@ import ProductDetail from "./pages/ProductDetail";
 import Products from "./pages/Products";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
-
 // 🔥 ADMIN PAGES
 import AddProduct from "./pages/AddProduct";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -48,7 +48,7 @@ function App() {
           <Route path="/my-orders" element={<MyOrders />} />
 
           <Route path="/profile" element={<Profile />} />
-
+          <Route path="/contact" element={<Contact />} />
           {/* AUTH */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

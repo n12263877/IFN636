@@ -45,6 +45,9 @@ const Navbar = () => {
         <Link className="hover:text-gray-300" to="/products">
           Products
         </Link>
+        <Link className="hover:text-gray-300" to="/contact">
+          Contact
+        </Link>
 
         {/* 🔥 USER LINKS */}
         {user && user.role === "user" && (
