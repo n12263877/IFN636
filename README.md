@@ -6,7 +6,7 @@ This project is a full-stack web application developed using the MERN stack (Mon
 
 The system provides a complete e-commerce workflow including authentication, product management, cart functionality, and checkout.
 
----
+----
 
 ## Features
 
